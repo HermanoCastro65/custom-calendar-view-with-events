@@ -25,7 +25,7 @@ public class CustumCalendarView extends LinearLayout {
 
     List<Date> dates = new ArrayList<>();
     List<Events> eventList = new ArrayList<>();
-    
+
     public CustumCalendarView(Context context) {
         super(context);
     }
