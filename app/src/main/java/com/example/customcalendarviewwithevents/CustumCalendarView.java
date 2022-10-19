@@ -40,6 +40,7 @@ public class CustumCalendarView extends LinearLayout {
         super(context, attrs);
         this.context = context;
         InitializeLayout();
+        SetUpCalendar();
 
         PreviousButton.setOnClickListener(new OnClickListener() {
             @Override
