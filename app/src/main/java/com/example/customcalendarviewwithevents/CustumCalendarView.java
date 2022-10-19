@@ -2,6 +2,8 @@ package com.example.customcalendarviewwithevents;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -37,5 +39,40 @@ public class CustumCalendarView extends LinearLayout {
     public CustumCalendarView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
+        InitializeLayout();
+
+        PreviousButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calendar.add(Calendar.MONTH, -1);
+                SetUpCalendar();
+            }
+        });
+
+        NextButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calendar.add(Calendar.MONTH, 1);
+                SetUpCalendar();
+            }
+        });
+    }
+
+    public CustumCalendarView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs,defStyleAttr);
+    }
+
+    private void InitializeLayout() {
+        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.calendar_layout, this);
+        NextButton = view.findViewById(R.id.nextBtn);
+        PreviousButton = view.findViewById(R.id.previousBtn);
+        CurrentDate = view.findViewById(R.id.current_date);
+        gridView = view.findViewById(R.id.gridView);
+    }
+
+    private  void SetUpCalendar() {
+        String currentDate = dateFormat.format(calendar.getTime());
+        CurrentDate.setText(currentDate);
     }
 }
